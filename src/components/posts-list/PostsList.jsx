@@ -1,13 +1,15 @@
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 import { getPosts } from "../../functions/posts";
 import PostsListRow from "../posts-list-row/PostsListRow";
 
 export default function PostsList() {
     const [hasLoaded, setHasLoaded] = useState(false);
     const [posts, setPosts] = useState([]);
+    const {categoryId} = useParams();
 
     if (!hasLoaded) {
-        getPosts().then(posts => {
+        getPosts(categoryId).then(posts => {
             setPosts(posts);
             setHasLoaded(true);
         });

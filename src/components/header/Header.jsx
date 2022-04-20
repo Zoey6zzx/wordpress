@@ -1,8 +1,6 @@
-import { Link, Route, Routes } from "react-router-dom";
 import { useState } from "react";
 import { getCategories } from "../../functions/categories";
 import CategoriesListRow from "../categories-list-row/CategoriesListRow";
-import PostsList from "../posts-list/PostsList";
 
 export default function Header() {
     const [hasLoaded, setHasLoaded] = useState(false);
@@ -36,9 +34,6 @@ export default function Header() {
                     </div>
                 </div>
             </header>
-            <Routes>
-                <Route path=":categoryId" element={<PostsList />} />
-            </Routes>
         </div>
     );
 }

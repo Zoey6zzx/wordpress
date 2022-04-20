@@ -1,15 +1,22 @@
 import 'bootstrap/dist/js/bootstrap';
-import logo from './logo.svg';
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
+import Home from './components/home/Home';
+import PagesList from './components/pages-list/PagesList';
 import PostsList from './components/posts-list/PostsList';
-import Header from './components/header/Header';
 
 function App() {
   return (
     <div>
-      <Header />
-      <PostsList />
+      <Home />
+      <PagesList />
+      {/* <Routes>
+        <Route path=":categoryId" element={<PostsList />} >
+
+        </Route>
+      </Routes> */}
     </div>
+
   );
 }
 
