@@ -1,9 +1,6 @@
 export default function CategoriesListRow(props) {
 
     return(
-        <tr>
-            <td>{props.category.id}</td>
-            <td>{props.category.name}</td>
-        </tr>
+        <li><a href="#" className="nav-link px-2 text-secondary">{props.category.name}</a></li>
     );
 }
