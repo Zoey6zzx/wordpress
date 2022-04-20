@@ -1,27 +1,40 @@
+import { Link, Route, Routes } from "react-router-dom";
+import { useState } from "react";
+import { getCategories } from "../../functions/categories";
+import CategoriesListRow from "../categories-list-row/CategoriesListRow";
+
 export default function Header() {
+    const [hasLoaded, setHasLoaded] = useState(false);
+    const [categories, setCategories] = useState([]);
+
+    if (!hasLoaded) {
+        getCategories().then(categories => {
+            setCategories(categories);
+            setHasLoaded(true);
+        });
+    }
     return (
-        <header class="p-3 bg-dark text-white">
-            <div class="container">
-                <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                    
-                    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                        <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
-                        <li><a href="#" class="nav-link px-2 text-white">Features</a></li>
-                        <li><a href="#" class="nav-link px-2 text-white">Pricing</a></li>
-                        <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
-                        <li><a href="#" class="nav-link px-2 text-white">About</a></li>
-                    </ul>
+        <div>
+            <header className="p-3 bg-dark text-white">
+                <div className="container">
+                    <div className="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
 
-                    <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-                        <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search" />
-                    </form>
+                        <ul className="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                            <li><a href="#" className="nav-link px-2">Home</a></li>
+                            {categories.map(category => <CategoriesListRow key={category.id} category={category} />)}
+                        </ul>
 
-                    <div class="text-end">
-                        <button type="button" class="btn btn-outline-light me-2">Login</button>
-                        <button type="button" class="btn btn-warning">Sign-up</button>
+                        <form className="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+                            <input type="search" className="form-control form-control-dark" placeholder="Search..." aria-label="Search" />
+                        </form>
+
+                        <div className="text-end">
+                            <button type="button" className="btn btn-outline-light me-2">Login</button>
+                            <button type="button" className="btn btn-warning">Sign-up</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </header>
+            </header>
+        </div>
     );
 }
