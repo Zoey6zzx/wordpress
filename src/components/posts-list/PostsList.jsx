@@ -14,7 +14,7 @@ export default function PostsList() {
     }
 
     return (
-        <div className="container">
+        <div className="container m-5">
             <div className="row">
                 {posts.map(post => <PostsListRow key={post.id} post={post} />)}
             </div>
