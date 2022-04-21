@@ -1,6 +1,10 @@
+import { Link } from "react-router-dom";
+
 export default function CategoriesListRow(props) {
 
     return(
-        <li><a href={`/posts?categories=${props.category.id}`} className="nav-link px-2 text-secondary">{props.category.name}</a></li>
+        <li>
+            <Link className="nav-link px-2 text-secondary" to={`/categories/${props.category.id}/posts/`}>{props.category.name}</Link>
+        </li>
     );
 }

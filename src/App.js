@@ -1,22 +1,29 @@
 import 'bootstrap/dist/js/bootstrap';
-import { Route, Routes } from 'react-router-dom';
+import { Outlet, Route, Routes } from 'react-router-dom';
 import './App.css';
-import Home from './components/home/Home';
+import Footer from './components/footer/Footer';
+import Navbar from './components/navbar/Navbar';
+import NotFound from './components/not-found/NotFound';
 import PagesList from './components/pages-list/PagesList';
 import PostsList from './components/posts-list/PostsList';
 
 function App() {
   return (
     <div>
-      <Home />
-      <PagesList />
-      {/* <Routes>
-        <Route path=":categoryId" element={<PostsList />} >
+      <Navbar />
+      <Routes>
+        
+          <Route path="/" element={<Outlet />} >
+            <Route index element={<PostsList />} />
+            <Route path="/categories/:categoryId/posts/" element={<PostsList />} />
+            <Route path="/pages/:slug" element={<PagesList showPages={true}/>} />
+          </Route>
 
-        </Route>
-      </Routes> */}
+          <Route path="*" element={<NotFound />} />
+
+      </Routes>
+      <Footer />
     </div>
-
   );
 }
 

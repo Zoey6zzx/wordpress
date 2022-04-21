@@ -7,4 +7,6 @@ export const getCategories = () => {
         .then(categories => categories.map(category => new Category(category.id, category.name)))
 }
 
+export const categoryObjToModel = category => new Category(category.id, category.name)
+
 
